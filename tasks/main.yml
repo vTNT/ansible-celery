@@ -1,0 +1,21 @@
+---
+
+- name: Ensure nginx config dir
+  file: path=/var/log/celery state=directory mode=0644
+
+- name: Ensure nginx config dir
+  file: path=/var/run/celery state=directory mode=0644
+
+- name: Configure Celery
+  template: src=celery.conf.j2 dest=/etc/default/celeryd
+#  notify:
+#    - Restart Celery
+
+- name: Configure Celery Service Scripts
+  template: src=celery.service.j2 dest=/etc/init.d/celeryd
+
+- name: Ensure celery 
+  file: path=/etc/init.d/celeryd mode=0755
+
+- name: Configure Celery log rotation
+  template: src=logrotate_celery.j2 dest=/etc/logrotate.d/celery
