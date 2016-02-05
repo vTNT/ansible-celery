@@ -1,10 +1,20 @@
 ---
 
-- name: Ensure nginx config dir
-  file: path=/var/log/celery state=directory mode=0644
+- name: Create log directory
+  file:
+    state=directory
+    dest="{{celery_logdir}}"
+    owner="{{celery_user}}"
+    group="{{celery_group}}"
+    mode='0755'
 
-- name: Ensure nginx config dir
-  file: path=/var/run/celery state=directory mode=0644
+- name: Create run directory
+  file:
+    state=directory
+    dest="{{celery_piddir}}"
+    owner="{{celery_user}}"
+    group="{{celery_group}}"
+    mode='0755'
 
 - name: Configure Celery
   template: src=celery.conf.j2 dest=/etc/default/celeryd

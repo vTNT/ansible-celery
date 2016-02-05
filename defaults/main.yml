@@ -1,2 +1,7 @@
 ---
-web_app_dir: "/tmp/xx"
+
+web_app_dir: "/var/www/html/"
+celery_user: "www-data"
+celery_group: "www-data"
+celery_logdir: "/var/log/celeryd"
+celery_piddir: "/var/run/celeryd"

@@ -1,9 +1,9 @@
-/var/log/celery/*.log {
-        weekly
-        missingok
-        rotate 52
-        compress
-        delaycompress
-        notifempty
-        copytruncate
+{{ celery_logdir }}/*.log {
+    copytruncate
+    daily
+    dateext
+    rotate 5
+    compress
+    missingok
+    notifempty
 }

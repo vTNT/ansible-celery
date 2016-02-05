@@ -16,12 +16,12 @@ CELERYCTL="$CELERYD_CHDIR/manage.py celery"
 CELERYD_OPTS="--time-limit=300 --concurrency=8"
 
 # %n will be replaced with the nodename.
-CELERYD_LOG_FILE="/var/log/celery/%n.log"
-CELERYD_PID_FILE="/var/run/celery/%n.pid"
+CELERYD_LOG_FILE="{{ celery_logdir }}/%n.log"
+CELERYD_PID_FILE="{{ celery_piddir }}/%n.pid"
 
 # Workers should run as an unprivileged user.
-CELERYD_USER="www-data"
-CELERYD_GROUP="www-data"
+CELERYD_USER="{{ celery_user }}"
+CELERYD_GROUP="{{ celery_group }}"
 
 # Name of the projects settings module.
 export DJANGO_SETTINGS_MODULE="coresite.settings"
